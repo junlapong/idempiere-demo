@@ -1,0 +1,21 @@
+version: '3.7'
+
+services:
+  idempiere:
+    image: idempiereofficial/idempiere:8.2-demo
+    depends_on:
+      - "postgres"
+    volumes:
+      - ./log:/opt/idempiere/log
+    ports:
+      - 8080:8080
+
+  postgres:
+    image: postgres:13
+    volumes:
+      - ./data:/var/lib/postgresql/data
+    environment:
+      - TZ=Asia/Bangkok
+      - POSTGRES_PASSWORD=postgres
+    ports:
+      - 5432:5432
